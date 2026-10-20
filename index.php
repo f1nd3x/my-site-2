@@ -1,7 +1,9 @@
 <?php 
 require_once 'db.php'; 
 $sql = "SELECT * FROM users";
+$sql2 = "SELECT * FROM products";
 $result = $conn->query($sql);
+$result2 = $conn->query($sql2);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +19,17 @@ $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             echo "<li>";
             echo "<a href='user.php?id=" . $row['id'] . "'>" . $row['name'] . "</a>";
+            echo "</li>";
+        }
+        ?>
+    </ul>
+    <h2>Список продуктов</h2>
+    <a href="catalog.php"><b>Добавить новый товар</b></a>
+    <ul>
+        <?php
+        while($row = $result2->fetch_assoc()) {
+            echo "<li>";
+            echo "<a href='product.php?id=" . $row['id'] . "'>" . $row['title'] . "</a>";
             echo "</li>";
         }
         ?>
